@@ -48,6 +48,10 @@ def remove_tail():
     pos_list.pop(0)
     
 snake.direction = "Up"
+UP_EDGE = 250
+DOWN_EDGE = -250
+RIGHT_EDGE = 400
+LEFT_EDGE = -400
 
 def up():
     snake.direction="Up"
@@ -92,8 +96,24 @@ def move_snake():
  
     new_stamp()
     remove_tail()
+    new_pos = snake.pos()
+    new_x_pos = new_pos[0]
+    new_y_pos = new_pos[1]
+    if new_x_pos >= RIGHT_EDGE:
+         print("You hit the right edge! Game over!")
+         quit()
+         
 
-    
+    new_stamp()
+    remove_tail()
+    new_pos = snake.pos()
+    new_x_pos = new_pos[0]
+    new_y_pos = new_pos[1]
+    if new_x_pos >= LEFT_EDGE:
+         print("You hit the left edge! Game over!")
+         quit()         
+
+           
 
 
 
