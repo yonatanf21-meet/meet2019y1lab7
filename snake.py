@@ -84,13 +84,45 @@ for i in food_pos :
     food.goto(i)
     #food.stamp()
     m = (food.stamp())
+    food_stamps.append(m)
+    food.ht
+    #for this_food_pos in food_pos : 
         
+def make_food():
 
+
+    min_x=-int(SIZE_X/2/SQUARE_SIZE)+1
+    max_x=int(SIZE_X/2/SQUARE_SIZE)-1
+    min_y=-int(SIZE_Y/2/SQUARE_SIZE)+1
+    max_y=int(SIZE_Y/2/SQUARE_SIZE)-1
+
+    food_x = random.randint(min_x,max_x)*SQUARE_SIZE
+    food_y = random.randint(min_y,max_y)*SQUARE_SIZE
+
+    food.goto(food_x, food_y)
+    food_pos.append(food.pos())
+    m =(food.stamp())
+    food_stamps.append(m)
+    
+
+
+
+
+
+    
 def move_snake():
     my_pos = snake.pos()
     x_pos = my_pos[0]
     y_pos = my_pos[1]
 
+    if snake.pos() in food_pos:
+        food_index=food_pos.index(snake.pos()) #What does this do?
+        food.clearstamp(food_stamps[food_index]) #Remove eaten food stamp
+        food_pos.pop(food_index) #Remove eaten food position
+        food_stamps.pop(food_index) #Remove eaten food stamp
+
+
+        print("You have eaten the food!")
     if snake.direction == "Up":
         snake.goto(x_pos, y_pos + SQUARE_SIZE)
         print("You moved up!")
@@ -130,6 +162,8 @@ def move_snake():
          quit()
 
     turtle.ontimer(move_snake,TIME_STEP)
+    if len(food_stamps) <= 6 :
+        make_food()
 
 move_snake()
 
