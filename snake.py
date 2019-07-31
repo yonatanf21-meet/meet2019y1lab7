@@ -29,7 +29,7 @@ turtle.hideturtle()
 
 def new_stamp():
     snake_pos = snake.pos()
-    pos_list.append(snake.pos)
+    pos_list.append(snake_pos)
     snake_stamp = snake.stamp()
     stamp_list.append(snake_stamp)
 
@@ -115,14 +115,7 @@ def move_snake():
     x_pos = my_pos[0]
     y_pos = my_pos[1]
 
-    if snake.pos() in food_pos:
-        food_index=food_pos.index(snake.pos()) #What does this do?
-        food.clearstamp(food_stamps[food_index]) #Remove eaten food stamp
-        food_pos.pop(food_index) #Remove eaten food position
-        food_stamps.pop(food_index) #Remove eaten food stamp
-
-
-        print("You have eaten the food!")
+    
     if snake.direction == "Up":
         snake.goto(x_pos, y_pos + SQUARE_SIZE)
         print("You moved up!")
@@ -134,8 +127,20 @@ def move_snake():
     elif snake.direction == "Left":
         snake.goto(x_pos - SQUARE_SIZE, y_pos)
         print("You moved up!")
- 
+
+
+    if snake.pos() in pos_list:
+        print("you ate yourself" )
+        quit() 
     new_stamp()
+    if snake.pos() in food_pos:
+        food_index=food_pos.index(snake.pos()) #What does this do?
+        food.clearstamp(food_stamps[food_index]) #Remove eaten food stamp
+        food_pos.pop(food_index) #Remove eaten food position
+        food_stamps.pop(food_index) #Remove eaten food stamp
+
+        print("You have eaten the food!")
+   
     remove_tail()
     new_pos = snake.pos()
     new_x_pos = new_pos[0]
@@ -148,14 +153,9 @@ def move_snake():
          print("You hit the left edge! Game over!")
          quit()         
 
-           
-
     if new_y_pos >= UP_EDGE:
          print("You hit the up edge! Game over!")
          quit()
-
-
-
 
     if new_y_pos <= DOWN_EDGE:
          print("You hit the down edge! Game over!")
@@ -166,12 +166,6 @@ def move_snake():
         make_food()
 
 move_snake()
-
-
-
-
-
-
 
 
 turtle.mainloop()
