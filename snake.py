@@ -20,10 +20,10 @@ stamp_list = []
 food_pos = []
 food_stamps = []
 
-
+turtle.bgcolor("blue")
 snake = turtle.clone()
-snake.shape("square")
-
+snake.shape("circle")
+snake.color("yellow")
 
 turtle.hideturtle()
 
@@ -32,7 +32,8 @@ def new_stamp():
     pos_list.append(snake_pos)
     snake_stamp = snake.stamp()
     stamp_list.append(snake_stamp)
-
+    turtle.color("blue")
+    
 for loop in range(START_LENGTH):
     x_pos=snake.pos()[0]
     y_pos=snake.pos()[1]
