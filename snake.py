@@ -55,19 +55,15 @@ LEFT_EDGE = -400
 
 def up():
     snake.direction="Up"
-    move_snake()
     print("you pressed the up key!")
 def down():
     snake.direction="Down"
-    move_snake()
     print("you pressed the down key!")
 def right():
     snake.direction="Right"
-    move_snake()
     print("you pressed the right key!")
 def left():
     snake.direction="Left"
-    move_snake()
     print("you pressed the left key!")
 
 
@@ -76,6 +72,19 @@ turtle.onkeypress(down, "Down")
 turtle.onkeypress(right, "Right")
 turtle.onkeypress(left, "Left")
 turtle.listen()
+turtle.register_shape("trash.gif")
+
+
+food = turtle.clone()
+food.shape("trash.gif") 
+
+food_pos = [(100,100), (-100,100), (-100,-100), (100,-100)]
+food_stamps = []
+for i in food_pos :
+    food.goto(i)
+    #food.stamp()
+    m = (food.stamp())
+        
 
 def move_snake():
     my_pos = snake.pos()
@@ -103,17 +112,31 @@ def move_snake():
          print("You hit the right edge! Game over!")
          quit()
          
-
-    new_stamp()
-    remove_tail()
-    new_pos = snake.pos()
-    new_x_pos = new_pos[0]
-    new_y_pos = new_pos[1]
-    if new_x_pos >= LEFT_EDGE:
+    if new_x_pos <= LEFT_EDGE:
          print("You hit the left edge! Game over!")
          quit()         
 
            
+
+    if new_y_pos >= UP_EDGE:
+         print("You hit the up edge! Game over!")
+         quit()
+
+
+
+
+    if new_y_pos <= DOWN_EDGE:
+         print("You hit the down edge! Game over!")
+         quit()
+
+    turtle.ontimer(move_snake,TIME_STEP)
+
+move_snake()
+
+
+
+
+
 
 
 
