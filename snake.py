@@ -20,9 +20,9 @@ stamp_list = []
 food_pos = []
 food_stamps = []
 
-turtle.bgcolor("blue")
+turtle.bgcolor("pink")
 snake = turtle.clone()
-snake.shape("circle")
+
 snake.color("yellow")
 
 turtle.hideturtle()
@@ -73,12 +73,12 @@ turtle.onkeypress(down, "Down")
 turtle.onkeypress(right, "Right")
 turtle.onkeypress(left, "Left")
 turtle.listen()
-turtle.register_shape("trash.gif")
-
+turtle.register_shape("ship12.gif")
+turtle.register_shape("plastic12.gif")
 
 food = turtle.clone()
-food.shape("trash.gif") 
-
+food.shape("plastic12.gif") 
+snake.shape("ship12.gif")
 food_pos = [(100,100), (-100,100), (-100,-100), (100,-100)]
 food_stamps = []
 for i in food_pos :
